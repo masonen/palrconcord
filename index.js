@@ -1,11 +1,9 @@
 const { Client, Events, GatewayIntentBits, Collection} = require('discord.js');
-const Rcon = require('rcon');
 const {readdirSync} = require("fs");
 const {join} = require("path");
 const token = process.env.DISCORD_TOKEN
 
 const discordClient = new Client({ intents: [GatewayIntentBits.Guilds]});
-const rconClient = new Rcon(process.env.RCON_ADDRESS, process.env.RCON_PORT, process.env.RCON_PASS);
 
 discordClient.once(Events.ClientReady, readyClient => {
     console.log(`Ready! Logged in as ${readyClient.user.tag}`)

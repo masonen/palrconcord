@@ -2,7 +2,23 @@ version: '3'
 services:
   palrconcord:
     build: .
+    image: masonen/palrconcord
     volumes:
       - ./:/app
+    networks:
+      - palrconcord_ext
     env_file:
       - .env
+    depends_on:
+      - rcon-buddy
+  rcon-buddy:
+    image: valamidev/palworld-rcon-buddy:latest
+    networks:
+      - palrconcord_ext
+    env_file:
+      - .env
+
+networks:
+  palrconcord_ext:
+    name: palrconcord_ext
+    driver: bridge
